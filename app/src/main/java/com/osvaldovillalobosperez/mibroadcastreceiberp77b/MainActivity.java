@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.SEND_SMS,
             Manifest.permission.CALL_PHONE,
-            Manifest.permission.PROCESS_OUTGOING_CALLS
+            Manifest.permission.READ_CALL_LOG,
+            Manifest.permission.WRITE_CALL_LOG
     };
 
     private static final int PERMISSIONS_REQUEST_CODE = 1240;
