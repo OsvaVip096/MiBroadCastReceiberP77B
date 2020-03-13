@@ -26,7 +26,11 @@ public class MiReceiverPersonalizado extends BroadcastReceiver {
         final String textoSMS = MainActivity.intent.getStringExtra("responseText");
         final String textoTel = MainActivity.intent.getStringExtra("responseTel");
 
-        //Toast.makeText(context, "El SMS: " + textoSMS + " - El Tel: " + textoTel, Toast.LENGTH_LONG).show();
+        /*Toast.makeText(
+                context,
+                "El SMS: " + textoSMS + " - El Tel: " + textoTel,
+                Toast.LENGTH_LONG
+        ).show();*/
 
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(
                 Service.TELEPHONY_SERVICE
@@ -38,14 +42,20 @@ public class MiReceiverPersonalizado extends BroadcastReceiver {
                 super.onCallStateChanged(state, phoneNumber);
 
                 if (state == TelephonyManager.CALL_STATE_RINGING) {
-                    if (phoneNumber.equals("+52" + textoTel)) {
+                    if (phoneNumber.equals(textoTel)) {
                         SmsManager smsManager = SmsManager.getDefault();
-                        smsManager.sendTextMessage(textoTel, null, textoSMS, null, null);
-                        Toast.makeText(context, "Mensaje SMS envíado correctamente.", Toast.LENGTH_LONG).show();
-                    } else if (phoneNumber.equals(textoTel)) {
-                        SmsManager smsManager = SmsManager.getDefault();
-                        smsManager.sendTextMessage(textoTel, null, textoSMS, null, null);
-                        Toast.makeText(context, "Mensaje SMS envíado correctamente.", Toast.LENGTH_LONG).show();
+                        smsManager.sendTextMessage(
+                                textoTel,
+                                null,
+                                textoSMS,
+                                null,
+                                null
+                        );
+                        Toast.makeText(
+                                context,
+                                "Mensaje SMS envíado correctamente.",
+                                Toast.LENGTH_LONG
+                        ).show();
                     } else {
                         Toast.makeText(context, "El número ingresado en la caja de texto: " +
                                 textoTel + "\nes diferente del número entrante: " +
